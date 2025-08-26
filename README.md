@@ -1,6 +1,6 @@
-# DataFusionTrader
+# Onyx Trading Engine
 
-A modular, extensible trading strategy creation plateform built with scalable design patterns (Ports and Adapters/Hexagonal architecture). Supports live trading (Interactive Brokers) and backtesting (custom/Yahoo adapters) for stocks, forex, and more.
+A modular and extensible trading strategy creation platform built with scalable design patterns, supporting live trading (Interactive Brokers) and backtesting (custom/Yahoo adapters) for stocks, forex, and more.
 
 ## Features
 - **Live Trading:** Connects to Interactive Brokers (IB or IBkr) via IB API and Traders Works Station (TWS) for real-time execution.
@@ -56,6 +56,8 @@ Candlestick charts with buy/sell markers are generated for backtest results.
 ## Authors
 - [Josue Dazogbo](https://github.com/JDazogbo)
 - [Sultan Oloyede](https://github.com/sultanoloyede)
+- [Jedidiah Ange-Emmanuel Kouakou](https://github.com/ARelaxedScholar)
+- [Racine Kane](https://github.com/Racine-04)
 
 ## Resources
 - [System Architecture](Resources/Design/SystemArchitecture.md)
