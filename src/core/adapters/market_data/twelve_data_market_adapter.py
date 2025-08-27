@@ -10,11 +10,6 @@ from src.core.models.bar import Bar
 from src.core.models.asset import Asset, AssetType
 from src.core.ports.market_data_port import MarketDataPort
 
-START_DATE = None               # e.g., "2023-01-01"
-END_DATE = None                 # e.g., "2023-06-01"
-UNIT_PIP_VALUE = 30             # 1 unit = 30 pips
-TIMEFRAME = "1h"                # 1-hour candles
-
 class TwelveDataMarketAdapter(MarketDataPort):
 
     # Load environment variables from .env file
