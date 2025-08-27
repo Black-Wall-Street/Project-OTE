@@ -1,7 +1,7 @@
 import random
 from typing import List
 from dataclasses import replace
-from core.adapters.market_data.yf_market_adapter import YFMarketDataAdapter
+from src.core.adapters.market_data.yf_market_adapter import YFMarketDataAdapter
 from src.core.models.bar import Bar
 
 
