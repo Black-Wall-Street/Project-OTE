@@ -87,6 +87,5 @@ No changes to the strategy logic or engine are required—ensuring smooth deploy
 - [Racine Kane](https://github.com/Racine-04)
 
 ## Resources
-- [System Architecture](Resources/Design/SystemArchitecture.md)
-- [Logging & Backtest Charts](Resources/Images/Charts/IBPaperTrading.png)
-- [System Level View](Resources/Images/System/SystemLevelView.png)
+- [Installation Guide](src/README.md)
+- [Quantitative Analysis Reports](Resources/Reports)
