@@ -1,4 +1,8 @@
 ```mermaid
+---
+config:
+  theme: redux
+---
 flowchart LR
  subgraph s1["Trading System"]
         n5["Financial Data Port"]
