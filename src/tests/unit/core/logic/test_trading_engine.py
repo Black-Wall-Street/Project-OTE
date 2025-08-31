@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock, patch
-from src.core.logic.trading_engine import TradingEngine
+from core.logic.Engines.trading_engine import TradingEngine
 from src.core.models.bar import Bar
 from datetime import datetime
 import threading
