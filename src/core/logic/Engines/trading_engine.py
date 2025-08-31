@@ -3,7 +3,7 @@ from src.core.ports.broker_trade_port import BrokerTradePort
 from src.core.ports.market_data_port import MarketDataPort
 from src.core.models.asset import Asset
 from src.core.models.bar import Bar
-from core.logic.Strategies.strategy import Strategy
+from core.logic.strategies.strategy import Strategy
 from src.utils.config import RISK_FREE_RATE
 
 import threading

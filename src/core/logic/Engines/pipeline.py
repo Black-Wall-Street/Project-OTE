@@ -7,8 +7,8 @@ from src.core.models.asset import Asset, AssetType
 from src.core.models.bar import Bar
 
 # Strategies
-from core.logic.Engines.trading_engine import TradingEngine
-from core.logic.Strategies.moving_average import MovingAverageCrossoverStrategy
+from core.logic.engines.trading_engine import TradingEngine
+from core.logic.strategies.moving_average import MovingAverageCrossoverStrategy
 
 # Adapters
 from src.core.adapters.market_data.ib_market_adapter import IbApiDataAdapter

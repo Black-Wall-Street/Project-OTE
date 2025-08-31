@@ -1,8 +1,8 @@
-from core.logic.Engines.trading_engine import TradingEngine
+from core.logic.engines.trading_engine import TradingEngine
 from src.core.adapters.market_data.yf_market_adapter import YFMarketDataAdapter
-from core.logic.Strategies.moving_average import MovingAverageCrossoverStrategy
+from core.logic.strategies.moving_average import MovingAverageCrossoverStrategy
 from src.core.adapters.broker_trade.custom_broker_adapter import CustomBrokerAdapter
-from core.logic.Engines.monte_carlo_permutator import MonteCarloPermutator
+from core.logic.engines.monte_carlo_permutator import MonteCarloPermutator
 from src.core.adapters.result_plotter.plotly_plotter_adapter import PlotlyResultPlotterAdapter
 from src.core.models.bar import Bar
 from src.core.models.asset import Asset, AssetType
