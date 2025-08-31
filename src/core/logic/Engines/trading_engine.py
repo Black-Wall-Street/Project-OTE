@@ -3,7 +3,8 @@ from src.core.ports.broker_trade_port import BrokerTradePort
 from src.core.ports.market_data_port import MarketDataPort
 from src.core.models.asset import Asset
 from src.core.models.bar import Bar
-from core.logic.strategies.strategy import Strategy
+from src.core.logic.strategies.strategy import Strategy
+from src.core.logic.indicators.indicator import Indicator
 from src.utils.config import RISK_FREE_RATE
 
 import threading
@@ -14,10 +15,11 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 class TradingEngine:
-    def __init__(self, broker: BrokerTradePort, market_data: MarketDataPort, strategies: list[Strategy]):
+    def __init__(self, broker: BrokerTradePort, market_data: MarketDataPort, strategies: list[Strategy], indicators: list[Indicator]):
         self.broker = broker
         self.market_data = market_data
         self.strategies: list[Strategy] = strategies
+        self.indicators: list[Indicator] = indicators
         self.bar_data:list[Bar] = []
         self.portfolio_value: dict[datetime, int] = {}
 
@@ -37,7 +39,12 @@ class TradingEngine:
                 self.bar_data.append(bar)
                 self.portfolio_value[bar.timestamp] = self.broker.value
 
-                # Iterate over strategies to generate signals
+
+                # Iterate over inidicators to generate market signals
+                for indicator in self.indicators:
+                    indicator.compute(self.bar_data)
+
+                # Iterate over strategies to broker signals
                 for strategy in self.strategies:
                     strategy.evaluate(self.bar_data)
 

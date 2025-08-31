@@ -6,6 +6,9 @@ from src.core.services.ibapi_client import IBApi
 from src.core.models.asset import Asset, AssetType
 from src.core.models.bar import Bar
 
+# Indicators
+from src.core.logic.indicators.crossings import GoldenCross, DeathCross
+
 # Strategies
 from core.logic.engines.trading_engine import TradingEngine
 from core.logic.strategies.moving_average import MovingAverageCrossoverStrategy
@@ -21,6 +24,8 @@ if __name__ == "__main__":
     market_data_adapter = IbApiDataAdapter(ib_api)
     market_data_adapter.request_historical_data(asset, datetime.today() - timedelta(days=300))
     broker_adapter = IbBrokerAdapter(ib_api)
-    strategy = MovingAverageCrossoverStrategy(broker_adapter, asset)
-    trading_engine = TradingEngine(broker_adapter, market_data_adapter, [strategy])
+    golden_cross = GoldenCross()
+    death_cross = DeathCross()
+    strategy = MovingAverageCrossoverStrategy(broker_adapter, asset, golden_cross, death_cross)
+    trading_engine = TradingEngine(broker_adapter, market_data_adapter, [strategy], [golden_cross, death_cross])
     trading_engine.run(asset, threaded=True)
