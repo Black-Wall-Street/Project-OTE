@@ -1,4 +1,4 @@
-from src.core.logic.strategy import Strategy
+from core.logic.Strategies.strategy import Strategy
 from src.core.models.asset import Asset, AssetType
 from src.core.models.bar import Bar
 from src.core.ports.broker_trade_port import BrokerTradePort
