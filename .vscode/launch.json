@@ -19,7 +19,7 @@
             "name": "Run Live Trading Pipeline",
             "type": "debugpy",
             "request": "launch",
-            "program": "src/core/logic/pipeline.py",
+            "program": "src/core/logic/Engines/pipeline.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
