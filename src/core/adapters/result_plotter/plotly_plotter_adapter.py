@@ -1,7 +1,7 @@
 import plotly as py
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from typing import List, Dict, Type
+from typing import Type
 from datetime import datetime
 
 from src.utils.config import RISK_FREE_RATE
@@ -14,8 +14,8 @@ class PlotlyResultPlotterAdapter(ResultPlotterPort):
     @classmethod
     def plot(
         cls: Type["PlotlyResultPlotterAdapter"],
-        bar_data: List[Bar],
-        portfolio_value: Dict[datetime, int],
+        bar_data: list[Bar],
+        portfolio_value: dict[datetime, int],
         asset_name: str,
         currency: str,
     ) -> None:
