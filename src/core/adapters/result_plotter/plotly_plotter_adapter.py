@@ -29,29 +29,10 @@ class PlotlyResultPlotterAdapter(ResultPlotterPort):
         equity_dates = list(portfolio_value.keys())
         equity_values = list(portfolio_value.values())
 
-        # Compute daily returns from equity curve manually
-        returns = []
-        for i in range(1, len(equity_values)):
-            prev = equity_values[i - 1]
-            curr = equity_values[i]
-            if prev != 0:
-                returns.append((curr - prev) / prev)
-            else:
-                returns.append(0.0)
+        returns = cls._compute_daily_returns(equity_values)
+        
+        sharpe_ratio = cls._compute_sharpe_ratio(returns)
 
-        # Mean return
-        mean_return = sum(returns) / len(returns) if returns else 0.0
-
-        # Standard deviation
-        std_return = 0.0
-        if returns:
-            mean = mean_return
-            variance = sum((r - mean) ** 2 for r in returns) / len(returns)
-            std_return = variance ** 0.5
-
-        sharpe_ratio = 0.0
-        if std_return > 0:
-            sharpe_ratio = (mean_return - RISK_FREE_RATE) / std_return
 
         fig = make_subplots(
             rows=2, cols=1,
@@ -89,3 +70,48 @@ class PlotlyResultPlotterAdapter(ResultPlotterPort):
         fig.update_yaxes(title_text=f"Account Equity ({currency})", row=2, col=1)
 
         py.offline.plot(fig)
+
+    @classmethod
+    def _compute_daily_returns(cls: Type["PlotlyResultPlotterAdapter"], equity_values: list[float]) -> list[float]:
+        # Compute daily returns from equity curve manually
+        returns = []
+        for i in range(1, len(equity_values)):
+            prev = equity_values[i - 1]
+            curr = equity_values[i]
+            if prev != 0:
+                returns.append((curr - prev) / prev)
+            else:
+                returns.append(0.0)
+        return returns
+    
+    @classmethod
+    def _compute_mean(cls: Type["PlotlyResultPlotterAdapter"], returns: list[float]) -> float:
+        return sum(returns) / len(returns) if returns else 0.0
+
+    @classmethod
+    def _compute_standard_deviation(cls: Type["PlotlyResultPlotterAdapter"], returns: list[float]) -> float:
+        
+        # Mean return
+        mean_return = cls._compute_mean(returns)
+
+        # Standard deviation
+        std_return = 0.0
+        if returns:
+            mean = mean_return
+            variance = sum((r - mean) ** 2 for r in returns) / len(returns)
+            std_return = variance ** 0.5
+
+        
+        return std_return
+    
+    @classmethod
+    def _compute_sharpe_ratio(cls: Type["PlotlyResultPlotterAdapter"], returns: list[float]) -> float:
+
+        mean_return = cls._compute_mean(returns)
+        std_return = cls._compute_standard_deviation(returns)
+
+        sharpe_ratio = 0.0
+        if std_return > 0:
+            sharpe_ratio = (mean_return - RISK_FREE_RATE) / std_return
+
+        return sharpe_ratio
